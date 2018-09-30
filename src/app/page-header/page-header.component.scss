@@ -1,8 +1,14 @@
 @import '~src/styles/global/_colors';
 
-header {
+.header {
   background-color: $theme-color;
   color: #fff;
   text-align: center;
   text-transform: uppercase;
+}
+
+.subheader {
+  background-color: $accent-color;
+  font-weight: bold;
+  font-style: italic;
 }
