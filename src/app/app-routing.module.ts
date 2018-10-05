@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 
 const appRoutes: Routes = [
   {
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'workouts',
-    component: AppComponent,
+    component: WorkoutsListComponent,
     data: { title: 'Workout list' },
   },
   {

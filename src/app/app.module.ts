@@ -10,6 +10,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
+    WorkoutsListComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
