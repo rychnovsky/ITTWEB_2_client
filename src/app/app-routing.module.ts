@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: { title: 'Workout app login' },
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: { title: 'Workout app register' },
   },
   {
     path: '',
