@@ -2,20 +2,8 @@
 
 <div class="container main-content">
   <table>
-    <tr>
-      <td><a href="/workout/31">Back Day</a></td>
-    </tr>
-    <tr>
-      <td><a href="/workout/32">Cardio</a></td>
-    </tr>
-    <tr>
-      <td><a href="/workout/29">Leg Day</a></td>
-    </tr>
-    <tr>
-      <td><a href="/workout/30">Chest Day</a></td>
-    </tr>
-    <tr>
-      <td><a href="/workout/33">Test 2</a></td>
+    <tr *ngFor="let workout of workouts">
+      <td><a [routerLink]="['/workout', workout.id]">{{workout.name}}</a></td>
     </tr>
   </table>
 </div>
