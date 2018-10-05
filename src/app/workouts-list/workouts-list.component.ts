@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkoutService } from '../services/workout.service';
+import { Workout } from '../model/workout.model';
 
 @Component({
   selector: 'app-workouts-list',
@@ -6,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workouts-list.component.scss'],
 })
 export class WorkoutsListComponent implements OnInit {
-  public workouts: Array<{ id: number; name: string }> = [];
+  public workouts: Workout[];
 
-  constructor() {
-    this.workouts.push({ id: 1, name: 'test' });
-    this.workouts.push({ id: 2, name: 'testfewf' });
-    this.workouts.push({ id: 3, name: 'tesfewft' });
+  constructor(workoutService: WorkoutService) {
+    workoutService
+      .getWorkouts()
+      .subscribe(workouts => (this.workouts = workouts));
   }
 
   ngOnInit() {}
