@@ -8,11 +8,11 @@
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form_login">
       <div>
         <label for="username">Email</label>
-        <input type="password" name="email" placeholder="Your email" id="email" />
+        <input type="email" name="email" placeholder="Your email" id="email" [(ngModel)]="email" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Your password" id="password" />
+        <input type="password" name="password" placeholder="Your password" id="password" [(ngModel)]="password" />
       </div>
       <div>
         <input type="submit" value="Log In" class="button button-primary" />
