@@ -17,7 +17,8 @@ export class AuthenticationService {
   private saveToken(token: string) {
     window.localStorage['loc8r-token'] = token;
   }
-  private getToken() {
+
+  public getToken() {
     if (window.localStorage['loc8r-token']) {
       return window.localStorage['loc8r-token'];
     } else {
