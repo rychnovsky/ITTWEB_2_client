@@ -6,18 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const appRoutes: Routes = [
-  {
-    path: 'workout/:id',
-    component: AppComponent,
-    data: { title: 'Workout detail' },
-  },
-  {
-    path: 'workouts',
-    component: WorkoutsListComponent,
-    data: { title: 'Workout list' },
-  },
   {
     path: 'login',
     component: LoginComponent,
@@ -27,6 +18,17 @@ const appRoutes: Routes = [
     path: 'register',
     component: RegisterComponent,
     data: { title: 'Workout app register' },
+  },
+  {
+    path: 'workout/:id',
+    component: AppComponent,
+    data: { title: 'Workout detail' },
+  },
+  {
+    path: 'workouts',
+    component: WorkoutsListComponent,
+    data: { title: 'Workout list' },
+    canActivate: [AuthGuard],
   },
   {
     path: '',

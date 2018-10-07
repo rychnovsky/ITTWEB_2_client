@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService {
   apiBaseUrl: string = config.API_BASE_URL;
+  redirectUrl: string; // todo: implement redirect url after login
 
   constructor(private http: HttpClient) {}
 
