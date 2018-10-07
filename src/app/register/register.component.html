@@ -9,19 +9,19 @@
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="form_login">
       <div>
         <label for="username">First name</label>
-        <input type="text" name="firstname" placeholder="First name" id="firstname" />
+        <input type="text" name="firstname" placeholder="First name" id="firstname" [(ngModel)]="firstname" />
       </div>
       <div>
         <label for="username">Surname</label>
-        <input type="text" name="surname" placeholder="Surname" id="surname" />
+        <input type="text" name="surname" placeholder="Surname" id="surname" [(ngModel)]="surname" />
       </div>
       <div>
         <label for="username">Email</label>
-        <input type="email" name="email" placeholder="Your email" id="email" />
+        <input type="email" name="email" placeholder="Your email" id="email" [(ngModel)]="email" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Your password" id="password" />
+        <input type="password" name="password" placeholder="Your password" id="password" [(ngModel)]="password" />
       </div>
       <div>
         <button type="submit" class="button button-primary">Register</button>

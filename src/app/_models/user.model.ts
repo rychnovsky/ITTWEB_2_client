@@ -1,7 +1,7 @@
 export class User {
   email: string;
   firstName: string;
-  surname: string;
+  surName: string;
   password: string;
   token: string;
 }

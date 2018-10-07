@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../_models/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import config from '../_config/config';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +31,7 @@ export class AuthenticationService {
       const payload = JSON.parse(window.atob(token.split('.')[1]));
       const user = new User();
       user.email = payload.email;
-      user.surname = payload.name;
+      user.surName = payload.name;
       return user;
     } else {
       return;
@@ -70,27 +72,29 @@ export class AuthenticationService {
     );
   }
 
-  public register(user: User) {
+  public register(user: User): Observable<User> {
     const url = `${this.apiBaseUrl}/register`;
-    this.http.post<User>(url, user).subscribe(
-      data => {
-        this.saveToken(data.token);
-        return true;
-      },
-      // Errors will call this callback instead:
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.log('An error occurred:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong, console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          console.log(
-            `Backend returned code ${err.status}, body was: ${err.error}`,
-          );
-        }
-        return false;
-      },
+    return this.http.post<User>(url, user).pipe(
+      map(
+        data => {
+          this.saveToken(data.token);
+          return data;
+        },
+        // Errors will call this callback instead:
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.log('An error occurred:', err.error.message);
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong, console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            console.log(
+              `Backend returned code ${err.status}, body was: ${err.error}`,
+            );
+          }
+          return false;
+        },
+      ),
     );
   }
 }
