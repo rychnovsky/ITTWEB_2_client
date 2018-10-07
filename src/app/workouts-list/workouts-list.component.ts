@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkoutService } from '../services/workout.service';
-import { Workout } from '../model/workout.model';
+import { WorkoutService } from '../_services/workout.service';
+import { Workout } from '../_models/workout.model';
 
 @Component({
   selector: 'app-workouts-list',
@@ -11,9 +11,7 @@ export class WorkoutsListComponent implements OnInit {
   public workouts: Workout[];
 
   constructor(workoutService: WorkoutService) {
-    workoutService
-      .getWorkouts()
-      .subscribe(workouts => (this.workouts = workouts));
+    workoutService.findAll().subscribe(workouts => (this.workouts = workouts));
   }
 
   ngOnInit() {}

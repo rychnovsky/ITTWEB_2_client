@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
-import { WorkoutService } from './services/workout.service';
+import { WorkoutService } from './_services/workout.service';
 
 @NgModule({
   declarations: [
