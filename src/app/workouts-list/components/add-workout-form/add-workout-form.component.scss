@@ -1,0 +1,15 @@
+.wrapper {
+  margin-top: 80px;
+}
+
+input[type='text'] {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  line-height: 30px;
+  min-width: 300px;
+}
+label {
+  display: block;
+}

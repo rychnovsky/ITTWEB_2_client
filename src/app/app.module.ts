@@ -15,6 +15,7 @@ import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { WorkoutService } from './_services/workout.service';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthenticationService } from './_services/authentication.service';
+import { AddWorkoutFormComponent } from './workouts-list/components/add-workout-form/add-workout-form.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthenticationService } from './_services/authentication.service';
     RegisterComponent,
     PageNotFoundComponent,
     WorkoutsListComponent,
+    AddWorkoutFormComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [

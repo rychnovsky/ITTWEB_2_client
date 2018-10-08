@@ -1,9 +1,14 @@
-<app-page-header></app-page-header>
+<app-page-header title="Workout App" subtitle="List of workouts">
+</app-page-header>
 
 <div class="container main-content">
+
   <table>
     <tr *ngFor="let workout of workouts">
       <td><a [routerLink]="['/workout', workout.id]">{{workout.name}}</a></td>
     </tr>
   </table>
+
+  <app-add-workout-form></app-add-workout-form>
+
 </div>

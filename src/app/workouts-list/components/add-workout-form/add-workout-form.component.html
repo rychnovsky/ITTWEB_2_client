@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <h2>Add New Workout</h2>
+  <form (ngSubmit)="onSubmit()" #addWorkoutForm="ngForm">
+    <label for="workout_name">Workout Name:</label>
+    <input name="workout_name" id="workout_name" value="" type="text" required [(ngModel)]="newWorkoutName">
+    <div>
+      <input value="Submit" type="submit" class="button button-primary">
+      <input reset="Reset" type="reset" class="button">
+    </div>
+  </form>
+</div>

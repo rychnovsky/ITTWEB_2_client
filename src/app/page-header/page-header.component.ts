@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./page-header.component.scss'],
 })
 export class PageHeaderComponent implements OnInit {
-  public title = 'Workout App';
+  @Input()
+  title: string;
+  @Input()
+  subtitle: string;
 
   constructor(
     private authService: AuthenticationService,
