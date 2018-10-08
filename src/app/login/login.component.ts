@@ -35,8 +35,7 @@ export class LoginComponent {
       .subscribe(
         data => {
           console.log(data);
-          debugger;
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/');
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {

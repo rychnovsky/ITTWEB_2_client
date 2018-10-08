@@ -34,6 +34,7 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: '/workouts',
     pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

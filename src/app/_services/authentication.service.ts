@@ -12,19 +12,24 @@ import { Observable } from 'rxjs';
 export class AuthenticationService {
   apiBaseUrl: string = config.API_BASE_URL;
   redirectUrl: string; // todo: implement redirect url after login
+  CURRENT_USER: string = 'loc8r-token';
 
   constructor(private http: HttpClient) {}
 
   private saveToken(token: string) {
-    window.localStorage['loc8r-token'] = token;
+    window.localStorage[this.CURRENT_USER] = token;
   }
 
   public getToken() {
-    if (window.localStorage['loc8r-token']) {
-      return window.localStorage['loc8r-token'];
+    if (window.localStorage[this.CURRENT_USER]) {
+      return window.localStorage[this.CURRENT_USER];
     } else {
       return '';
     }
+  }
+
+  public logout() {
+    localStorage.removeItem(this.CURRENT_USER);
   }
 
   public currentUser(): User {
