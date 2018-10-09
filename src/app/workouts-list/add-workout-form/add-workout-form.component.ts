@@ -1,8 +1,8 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
-import { WorkoutService } from '../../../_services/workout.service';
-import { Workout } from '../../../_models/workout.model';
+import { WorkoutService } from '../../_services/workout.service';
+import { Workout } from '../../_models/workout.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AlertService } from '../../../_services/alert.service';
+import { AlertService } from '../../_services/alert.service';
 
 @Component({
   selector: 'app-add-workout-form',
