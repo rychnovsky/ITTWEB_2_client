@@ -21,6 +21,9 @@
         <td>{{excercise.set}}</td>
         <td>{{excercise.duration}}</td>
       </tr>
+      <tr *ngIf="excercises && !excercises.length">
+        <td colspan="4">no excercises found</td>
+      </tr>
     </tbody>
   </table>
 

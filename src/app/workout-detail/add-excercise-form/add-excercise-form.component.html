@@ -1,14 +1,17 @@
 <h2>Add New Exercise</h2>
-<form action="/workout/31" method="POST">
+<form (ngSubmit)="onSubmit()" #addExcerciseForm="ngForm">
   <label for="exercise_name">Exercise Name:</label>
-  <input class="form_group" name="exercise_name" id="exercise_name" value="" type="text" required>
+  <input class="form_group" name="exercise_name" id="exercise_name" value="" type="text" required [(ngModel)]="name">
   <label for="description">Description: </label>
-  <input class="form_group" name="description" id="description" value="" type="text" required>
+  <input class="form_group" name="description" id="description" value="" type="text" required [(ngModel)]="description">
   <label for="num_per_set">Number Per Set: </label>
-  <input class="form_group" name="num_per_set" id="num_per_set" value="" type="number" min="0" max="1000" required>
+  <input class="form_group" name="num_per_set" id="num_per_set" value="" type="number" min="0" max="1000" required
+    [(ngModel)]="set">
   <label for="num_sets">Number of Sets:</label>
-  <input class="form_group" name="num_sets" id="num_sets" value="" type="number" min="0" max="1000" required>
-  <br>
-  <input id="submit" value="Submit" type="submit">
-  <input id="reset" reset="Reset" type="reset">
+  <input class="form_group" name="num_sets" id="num_sets" value="" type="number" min="0" max="1000" required
+    [(ngModel)]="duration">
+  <div>
+    <input value="Submit" type="submit" class="button button-primary">
+    <input reset="Reset" type="reset" class="button">
+  </div>
 </form>

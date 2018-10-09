@@ -24,6 +24,7 @@ const appRoutes: Routes = [
     path: 'workout/:id',
     component: WorkoutDetailComponent,
     data: { title: 'Workout detail' },
+    canActivate: [AuthGuard],
   },
   {
     path: 'workouts',
