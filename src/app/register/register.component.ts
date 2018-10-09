@@ -5,6 +5,7 @@ import { User } from '../_models/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { first } from 'rxjs/operators';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
+    private alertService: AlertService,
   ) {}
 
   onSubmit() {
@@ -38,19 +40,16 @@ export class RegisterComponent {
       .subscribe(
         data => {
           console.log(data);
+          this.alertService.success('You have successfully registered!', true);
           this.router.navigate(['/']);
         },
         (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.log('An error occurred:', err.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong, console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-            console.log(
-              `Backend returned code ${err.status}, body was: ${err.error}`,
-            );
-          }
+          console.log(
+            `Backend returned code ${err.status}, body was: ${err.error}`,
+          );
+
+          this.alertService.error(err.error.message);
+
           return false;
         },
       );

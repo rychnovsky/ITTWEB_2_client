@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../_models/user.model';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-page-header',
@@ -19,6 +20,7 @@ export class PageHeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
+    private alertService: AlertService,
     private router: Router,
   ) {}
 
@@ -29,6 +31,7 @@ export class PageHeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logout();
+    this.alertService.success('You have logged out', true);
     this.router.navigateByUrl('/login');
     return false;
   }

@@ -44,7 +44,6 @@ export class LoginComponent {
             err.error,
           );
 
-          // this.hasError = true;
           this.alertService.error(err.error.message);
 
           return false;
