@@ -10,25 +10,10 @@
 .subheader {
   background-color: $accent-color;
   font-weight: bold;
-  font-style: italic;
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-  }
-}
-
-button {
-  border: 1px solid $gray;
-  border-radius: 5px;
-  padding: 10px 30px;
-  transition: all 250ms;
-  &:hover {
-    background: #ffffffa1;
-    cursor: pointer;
-  }
-  &:focus {
-    outline: none;
   }
 }

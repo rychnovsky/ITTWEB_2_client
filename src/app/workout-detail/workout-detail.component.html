@@ -3,7 +3,8 @@
 
 <div class="container main-content">
 
-  <a routerLink="/workouts" class="backlink">Back to Workouts</a>
+  <a [routerLink]="['/workouts']" class="button button-secondary backlink">Back to Workouts</a>
+
   <h1 *ngIf="workout">{{workout.name}}</h1>
   <table>
     <thead>
@@ -32,6 +33,7 @@
     </tbody>
   </table>
 
-  <app-add-excercise-form *ngIf="!loading" (onExcerciseCreated)="insertExcercise($event)" workoutId={{workout._id}}></app-add-excercise-form>
+  <app-add-excercise-form *ngIf="!loading && isLoggedIn===true" (onExcerciseCreated)="insertExcercise($event)"
+    workoutId={{workout._id}}></app-add-excercise-form>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Workout } from '../_models/workout.model';
 import { WorkoutService } from '../_services/workout.service';
+import { AuthenticationService } from '../_services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { Excercise } from '../_models/excercise.model';
 
@@ -11,15 +12,18 @@ import { Excercise } from '../_models/excercise.model';
 })
 export class WorkoutDetailComponent implements OnInit {
   workout: Workout;
+  isLoggedIn: boolean = false;
   excercises: Excercise[];
   loading: boolean;
 
   constructor(
     private workoutService: WorkoutService,
+    private authService: AuthenticationService,
     private activeRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.loading = true;
     this.activeRoute.params.subscribe(routeParams => {
       this.loadWorkoutDetail(routeParams.id);
@@ -34,6 +38,10 @@ export class WorkoutDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * To be passed to child form
+   * @param excercise New excercise to be shown in list
+   */
   insertExcercise(excercise: Excercise) {
     console.log(excercise);
     this.excercises.push(excercise);

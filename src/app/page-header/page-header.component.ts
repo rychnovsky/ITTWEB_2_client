@@ -16,7 +16,7 @@ export class PageHeaderComponent implements OnInit {
   subtitle: string;
 
   isLoggedIn: boolean;
-  currentUser: string;
+  currentUserName: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -26,13 +26,19 @@ export class PageHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.currentUser = this.authService.getCurrentUser().getFullName();
+    const currentUser: User = this.authService.getCurrentUser();
+    this.currentUserName = currentUser ? currentUser.getFullName() : '';
   }
 
   logOut() {
     this.authService.logout();
     this.alertService.success('You have logged out', true);
-    this.router.navigateByUrl('/login');
+    this.router.navigate([]);
+    return false;
+  }
+
+  logIn() {
+    this.router.navigate(['login']);
     return false;
   }
 }

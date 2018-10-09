@@ -21,22 +21,19 @@ const appRoutes: Routes = [
     data: { title: 'Workout app register' },
   },
   {
-    path: 'workout/:id',
-    component: WorkoutDetailComponent,
-    data: { title: 'Workout detail' },
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'workouts',
     component: WorkoutsListComponent,
     data: { title: 'Workout list' },
-    canActivate: [AuthGuard],
+  },
+  {
+    path: 'workout/:id',
+    component: WorkoutDetailComponent,
+    data: { title: 'Workout detail' },
   },
   {
     path: '',
     redirectTo: '/workouts',
     pathMatch: 'full',
-    canActivate: [AuthGuard],
   },
   {
     path: '**',

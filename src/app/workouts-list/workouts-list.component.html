@@ -3,7 +3,7 @@
 
 <div class="container main-content">
 
-  <h1>Welcome {{currentUser}}, here are your workouts:</h1>
+  <h1 *ngIf="isLoggedIn">Welcome {{currentUserName}}, here are your workouts:</h1>
 
   <app-loader *ngIf="loading"></app-loader>
 
@@ -13,6 +13,6 @@
     </tr>
   </table>
 
-  <app-add-workout-form *ngIf="!loading" (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
+  <app-add-workout-form *ngIf="!loading && isLoggedIn" (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
 
 </div>

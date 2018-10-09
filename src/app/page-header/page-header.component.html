@@ -7,6 +7,7 @@
 <div class="subheader">
   <div class="container">
     <span>{{ subtitle }}</span>
-    <button (click)="logOut()">{{currentUser}} | Logout</button>
+    <button *ngIf="isLoggedIn" (click)="logOut()" class="button button-primary">{{currentUserName}} | Logout</button>
+    <button *ngIf="!isLoggedIn" (click)="logIn()" class="button button-primary">Login</button>
   </div>
 </div>
