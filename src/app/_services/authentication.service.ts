@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class AuthenticationService {
   apiBaseUrl: string = config.API_BASE_URL;
   redirectUrl: string; // todo: implement redirect url after login
-  CURRENT_USER: string = 'loc8r-token';
+  CURRENT_USER: string = 'auth-token';
 
   constructor(private http: HttpClient) {}
 
@@ -28,17 +28,14 @@ export class AuthenticationService {
     }
   }
 
-  public logout() {
-    localStorage.removeItem(this.CURRENT_USER);
-  }
-
-  public currentUser(): User {
+  public getCurrentUser(): User {
     if (this.isLoggedIn()) {
       const token = this.getToken();
       const payload = JSON.parse(window.atob(token.split('.')[1]));
       const user = new User();
       user.email = payload.email;
-      user.surName = payload.name;
+      user.firstName = payload.firstName;
+      user.surName = payload.surName;
       return user;
     } else {
       return;
@@ -63,6 +60,10 @@ export class AuthenticationService {
         return data;
       }),
     );
+  }
+
+  public logout() {
+    localStorage.removeItem(this.CURRENT_USER);
   }
 
   public register(user: User): Observable<User> {

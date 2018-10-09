@@ -4,4 +4,8 @@ export class User {
   surName: string;
   password: string;
   token: string;
+
+  getFullName(): string {
+    return `${this.firstName} ${this.surName}`;
+  }
 }
