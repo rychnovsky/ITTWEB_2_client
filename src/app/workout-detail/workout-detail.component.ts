@@ -33,4 +33,9 @@ export class WorkoutDetailComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  insertExcercise(excercise: Excercise) {
+    console.log(excercise);
+    this.excercises.push(excercise);
+  }
 }

@@ -32,6 +32,6 @@
     </tbody>
   </table>
 
-  <app-add-excercise-form></app-add-excercise-form>
+  <app-add-excercise-form *ngIf="!loading" (onExcerciseCreated)="insertExcercise($event)" workoutId={{workout._id}}></app-add-excercise-form>
 
 </div>

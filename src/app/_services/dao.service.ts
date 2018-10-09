@@ -10,7 +10,7 @@ import config from '../_config/config.js';
 export abstract class DaoService<T> {
   apiBaseUrl: string = config.API_BASE_URL;
 
-  constructor(private http: HttpClient, private endpoint: string) {}
+  constructor(protected http: HttpClient, private endpoint: string) {}
 
   /**
    * Send GET request for list of all instances of entity
@@ -19,6 +19,9 @@ export abstract class DaoService<T> {
     return this.http.get<T[]>(`${this.apiBaseUrl}/${this.endpoint}`);
   }
 
+  /**
+   * Send GET request to find instance of entity by id
+   */
   findById(id: number): Observable<T> {
     return this.http.get<T>(`${this.apiBaseUrl}/${this.endpoint}/${id}`);
   }

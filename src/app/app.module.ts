@@ -21,6 +21,7 @@ import { AddExcerciseFormComponent } from './workout-detail/add-excercise-form/a
 import { LoaderComponent } from './loader/loader.component';
 import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './_services/alert.service';
+import { ExcerciseService } from './_services/excercise.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AlertService } from './_services/alert.service';
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
     WorkoutService,
+    ExcerciseService,
     AuthenticationService,
     AlertService,
     {
