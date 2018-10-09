@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Workout } from '../_models/workout.model';
+import { WorkoutService } from '../_services/workout.service';
+import { ActivatedRoute } from '@angular/router';
+import { Excercise } from '../_models/excercise.model';
 
 @Component({
   selector: 'app-workout-detail',
@@ -6,7 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workout-detail.component.scss'],
 })
 export class WorkoutDetailComponent implements OnInit {
-  constructor() {}
+  workout: Workout;
+  excercises: Excercise[];
 
-  ngOnInit() {}
+  constructor(
+    private workoutService: WorkoutService,
+    private activeRoute: ActivatedRoute,
+  ) {}
+
+  ngOnInit() {
+    this.activeRoute.params.subscribe(routeParams => {
+      this.loadWorkoutDetail(routeParams.id);
+    });
+  }
+
+  loadWorkoutDetail(id: number) {
+    this.workoutService.findById(id).subscribe(workout => {
+      this.workout = workout;
+      this.excercises = workout.excercises;
+    });
+  }
 }

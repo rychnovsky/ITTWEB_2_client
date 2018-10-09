@@ -10,9 +10,15 @@ import { Workout } from '../_models/workout.model';
 export class WorkoutsListComponent implements OnInit {
   public workouts: Workout[];
 
-  constructor(workoutService: WorkoutService) {
-    workoutService.findAll().subscribe(workouts => (this.workouts = workouts));
+  constructor(private workoutService: WorkoutService) {}
+
+  ngOnInit() {
+    this.loadWorkoutsList();
   }
 
-  ngOnInit() {}
+  loadWorkoutsList() {
+    this.workoutService
+      .findAll()
+      .subscribe(workouts => (this.workouts = workouts));
+  }
 }

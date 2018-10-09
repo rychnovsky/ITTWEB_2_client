@@ -4,7 +4,7 @@
 <div class="container main-content">
 
   <a routerLink="/workouts">Back to Workouts</a>
-  <h1>Back Day</h1>
+  <h1 *ngIf="workout">{{workout.name}}</h1>
   <table>
     <thead>
       <tr>
@@ -14,7 +14,14 @@
         <th>Number of Sets</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <tr *ngFor="let excercise of excercises">
+        <td>{{excercise.name}}</td>
+        <td>{{excercise.description}}</td>
+        <td>{{excercise.set}}</td>
+        <td>{{excercise.duration}}</td>
+      </tr>
+    </tbody>
   </table>
 
   <app-add-excercise-form></app-add-excercise-form>

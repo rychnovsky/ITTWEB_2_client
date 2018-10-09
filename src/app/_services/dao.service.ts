@@ -19,6 +19,10 @@ export abstract class DaoService<T> {
     return this.http.get<T[]>(`${this.apiBaseUrl}/${this.endpoint}`);
   }
 
+  findById(id: number): Observable<T> {
+    return this.http.get<T>(`${this.apiBaseUrl}/${this.endpoint}/${id}`);
+  }
+
   /**
    * Send POST request to create new instance of entity
    * @param newObject Object to be posted
