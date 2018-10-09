@@ -17,6 +17,7 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthenticationService } from './_services/authentication.service';
 import { AddWorkoutFormComponent } from './workouts-list/components/add-workout-form/add-workout-form.component';
 import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
+import { AddExcerciseFormComponent } from './workout-detail/add-excercise-form/add-excercise-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { WorkoutDetailComponent } from './workout-detail/workout-detail.componen
     WorkoutsListComponent,
     AddWorkoutFormComponent,
     WorkoutDetailComponent,
+    AddExcerciseFormComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
