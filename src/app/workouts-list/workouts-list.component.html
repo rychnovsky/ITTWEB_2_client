@@ -5,7 +5,7 @@
 
   <table>
     <tr *ngFor="let workout of workouts">
-      <td><a [routerLink]="['/workout', workout.id]">{{workout.name}}</a></td>
+      <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
     </tr>
   </table>
 

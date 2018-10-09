@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegisterComponent } from './register/register.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -21,7 +22,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'workout/:id',
-    component: AppComponent,
+    component: WorkoutDetailComponent,
     data: { title: 'Workout detail' },
   },
   {

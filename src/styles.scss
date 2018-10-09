@@ -38,3 +38,18 @@ body {
     margin-left: 10px;
   }
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  thead tr {
+    background: $theme-color;
+    color: #fff;
+  }
+  th,
+  td {
+    border: 1px solid;
+    padding: 10px;
+    text-align: center;
+  }
+}
