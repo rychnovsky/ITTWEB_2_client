@@ -18,6 +18,7 @@ import { AuthenticationService } from './_services/authentication.service';
 import { AddWorkoutFormComponent } from './workouts-list/components/add-workout-form/add-workout-form.component';
 import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
 import { AddExcerciseFormComponent } from './workout-detail/add-excercise-form/add-excercise-form.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddExcerciseFormComponent } from './workout-detail/add-excercise-form/a
     AddWorkoutFormComponent,
     WorkoutDetailComponent,
     AddExcerciseFormComponent,
+    LoaderComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [

@@ -8,17 +8,20 @@ import { Workout } from '../_models/workout.model';
   styleUrls: ['./workouts-list.component.scss'],
 })
 export class WorkoutsListComponent implements OnInit {
-  public workouts: Workout[];
+  loading: boolean;
+  workouts: Workout[];
 
   constructor(private workoutService: WorkoutService) {}
 
   ngOnInit() {
+    this.loading = true;
     this.loadWorkoutsList();
   }
 
   loadWorkoutsList() {
-    this.workoutService
-      .findAll()
-      .subscribe(workouts => (this.workouts = workouts));
+    this.workoutService.findAll().subscribe(workouts => {
+      this.workouts = workouts;
+      this.loading = false;
+    });
   }
 }

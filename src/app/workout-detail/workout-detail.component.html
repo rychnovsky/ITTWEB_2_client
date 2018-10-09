@@ -3,7 +3,7 @@
 
 <div class="container main-content">
 
-  <a routerLink="/workouts">Back to Workouts</a>
+  <a routerLink="/workouts" class="backlink">Back to Workouts</a>
   <h1 *ngIf="workout">{{workout.name}}</h1>
   <table>
     <thead>
@@ -15,6 +15,11 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngIf="loading">
+        <td colspan="4">
+          <app-loader></app-loader>
+        </td>
+      </tr>
       <tr *ngFor="let excercise of excercises">
         <td>{{excercise.name}}</td>
         <td>{{excercise.description}}</td>

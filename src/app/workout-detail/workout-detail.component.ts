@@ -12,6 +12,7 @@ import { Excercise } from '../_models/excercise.model';
 export class WorkoutDetailComponent implements OnInit {
   workout: Workout;
   excercises: Excercise[];
+  loading: boolean;
 
   constructor(
     private workoutService: WorkoutService,
@@ -19,6 +20,7 @@ export class WorkoutDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.activeRoute.params.subscribe(routeParams => {
       this.loadWorkoutDetail(routeParams.id);
     });
@@ -28,6 +30,7 @@ export class WorkoutDetailComponent implements OnInit {
     this.workoutService.findById(id).subscribe(workout => {
       this.workout = workout;
       this.excercises = workout.excercises;
+      this.loading = false;
     });
   }
 }

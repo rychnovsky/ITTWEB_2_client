@@ -3,7 +3,9 @@
 
 <div class="container main-content">
 
-  <table>
+  <app-loader *ngIf="loading"></app-loader>
+
+  <table *ngIf="!loading">
     <tr *ngFor="let workout of workouts">
       <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
     </tr>
