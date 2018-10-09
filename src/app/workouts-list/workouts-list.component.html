@@ -5,14 +5,22 @@
 
   <h1 *ngIf="isLoggedIn">Welcome {{currentUserName}}, here are your workouts:</h1>
 
-  <app-loader *ngIf="loading"></app-loader>
+  <ng-container *ngIf="loading; then loader; else loaded"></ng-container>
 
-  <table *ngIf="!loading">
-    <tr *ngFor="let workout of workouts">
-      <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
-    </tr>
-  </table>
+  <ng-template #loader>
+    <app-loader *ngIf="loading"></app-loader>
+  </ng-template>
 
-  <app-add-workout-form *ngIf="!loading && isLoggedIn" (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
+  <ng-template #loaded>
+    <table>
+      <tr *ngFor="let workout of workouts">
+        <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
+      </tr>
+    </table>
+
+    <app-add-workout-form *ngIf="isLoggedIn" (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
+
+    <p *ngIf="!isLoggedIn">You must be logged in to add new workout programs - <a [routerLink]="['/login']">login now</a></p>
+  </ng-template>
 
 </div>

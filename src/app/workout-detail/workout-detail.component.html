@@ -5,35 +5,43 @@
 
   <a [routerLink]="['/workouts']" class="button button-secondary backlink">Back to Workouts</a>
 
-  <h1 *ngIf="workout">{{workout.name}}</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Number Per Set</th>
-        <th>Number of Sets</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="loading">
-        <td colspan="4">
-          <app-loader></app-loader>
-        </td>
-      </tr>
-      <tr *ngFor="let excercise of excercises">
-        <td>{{excercise.name}}</td>
-        <td>{{excercise.description}}</td>
-        <td>{{excercise.set}}</td>
-        <td>{{excercise.duration}}</td>
-      </tr>
-      <tr *ngIf="excercises && !excercises.length">
-        <td colspan="4">no excercises found</td>
-      </tr>
-    </tbody>
-  </table>
 
-  <app-add-excercise-form *ngIf="!loading && isLoggedIn===true" (onExcerciseCreated)="insertExcercise($event)"
-    workoutId={{workout._id}}></app-add-excercise-form>
+  <ng-container *ngIf="loading; then loader; else loaded"></ng-container>
+
+  <ng-template #loader>
+    <app-loader *ngIf="loading"></app-loader>
+  </ng-template>
+
+  <ng-template #loaded>
+    <h1 *ngIf="workout">{{workout.name}}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Number Per Set</th>
+          <th>Number of Sets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let excercise of excercises">
+          <td>{{excercise.name}}</td>
+          <td>{{excercise.description}}</td>
+          <td>{{excercise.set}}</td>
+          <td>{{excercise.duration}}</td>
+        </tr>
+        <tr *ngIf="excercises && !excercises.length">
+          <td colspan="4">no excercises found</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-add-excercise-form *ngIf="isLoggedIn===true" (onExcerciseCreated)="insertExcercise($event)" workoutId={{workout._id}}></app-add-excercise-form>
+
+    <p *ngIf="!isLoggedIn">You must be logged in to add new excercises to this workout - <a [routerLink]="['/login']">login
+        now</a></p>
+  </ng-template>
+
+
 
 </div>
