@@ -19,7 +19,8 @@ import { AddWorkoutFormComponent } from './workouts-list/components/add-workout-
 import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
 import { AddExcerciseFormComponent } from './workout-detail/add-excercise-form/add-excercise-form.component';
 import { LoaderComponent } from './loader/loader.component';
-import { NotificationComponent } from './notification/notification.component';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from './_services/alert.service';
 
 @NgModule({
   declarations: [
@@ -33,12 +34,13 @@ import { NotificationComponent } from './notification/notification.component';
     WorkoutDetailComponent,
     AddExcerciseFormComponent,
     LoaderComponent,
-    NotificationComponent,
+    AlertComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
     WorkoutService,
     AuthenticationService,
+    AlertService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,0 +1,39 @@
+@import '~src/styles/global/colors';
+
+.alert {
+  padding: 20px;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  &.alert-success {
+    background: $success;
+    color: white;
+  }
+  &.alert-danger {
+    background: $danger;
+    color: white;
+  }
+  &.alert-info {
+    background: $info;
+    color: white;
+  }
+  &.alert-warning {
+    background: $warning;
+    color: white;
+  }
+  span {
+    flex: 1;
+  }
+  .close {
+    cursor: pointer;
+    transition: all 250ms;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}

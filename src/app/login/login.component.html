@@ -5,8 +5,6 @@
       <h1>Workout App</h1>
     </div>
 
-    <app-notification *ngIf="hasError" type="danger" message="{{error.message}}" (dismissError)="hideErrorMsg()"></app-notification>
-
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form_login">
       <div>
         <label for="username">Email</label>

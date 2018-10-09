@@ -5,6 +5,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 
 import { first } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent {
   email: string;
   password: string;
-  hasError: boolean = false;
-  error: HttpErrorResponse;
 
   constructor(
     private router: Router,
     private authService: AuthenticationService,
+    private alertService: AlertService,
   ) {}
 
   onSubmit() {
@@ -43,18 +43,13 @@ export class LoginComponent {
             `Backend returned code ${err.status}, body was: `,
             err.error,
           );
-          this.error = err.error;
-          this.hasError = true;
+
+          // this.hasError = true;
+          this.alertService.error(err.error.message);
+
           return false;
         },
       );
     return false;
-  }
-
-  showErrorMsg() {
-    this.hasError = true;
-  }
-  hideErrorMsg() {
-    this.hasError = false;
   }
 }
