@@ -9,6 +9,6 @@ import { DaoService } from './dao.service';
 })
 export class WorkoutService extends DaoService<Workout> {
   constructor(http: HttpClient) {
-    super(http, '/workouts');
+    super(http, 'workouts');
   }
 }

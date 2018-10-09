@@ -32,6 +32,7 @@
   .close {
     cursor: pointer;
     transition: all 250ms;
+    text-decoration: none;
     &:hover {
       transform: scale(1.5);
     }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 import { WorkoutService } from '../../../_services/workout.service';
 import { Workout } from '../../../_models/workout.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from '../../../_services/alert.service';
 
 @Component({
   selector: 'app-add-workout-form',
@@ -9,35 +10,36 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./add-workout-form.component.scss'],
 })
 export class AddWorkoutFormComponent implements OnInit {
+  @Output()
+  onWorkoutCreated: EventEmitter<any> = new EventEmitter();
+
   newWorkoutName: string;
 
-  constructor(private workoutService: WorkoutService) {}
+  constructor(
+    private workoutService: WorkoutService,
+    private alertService: AlertService,
+  ) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.newWorkoutName);
-
     let workout: Workout = new Workout();
     workout.name = this.newWorkoutName;
 
     this.workoutService.create(workout).subscribe(
       data => {
         this.newWorkoutName = '';
+        this.onWorkoutCreated.emit(data);
+        this.alertService.success('New workout created');
         console.log(data);
-        alert('Added');
       },
       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.log('An error occurred:', err.error.message);
-        } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong, console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          console.log(
-            `Backend returned code ${err.status}, body was: ${err.error}`,
-          );
-        }
+        console.log(
+          `Backend returned code ${err.status}, body was: ${err.error}`,
+        );
+
+        this.alertService.error(err.error.message);
+
         return false;
       },
     );
