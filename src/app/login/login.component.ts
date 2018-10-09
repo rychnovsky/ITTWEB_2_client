@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/user.model';
 import { AuthenticationService } from '../_services/authentication.service';
 
@@ -12,15 +12,24 @@ import { AlertService } from '../_services/alert.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
+  returnurl: string = '';
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthenticationService,
     private alertService: AlertService,
   ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(
+      params => (this.returnurl = params['return'] || '/'),
+    );
+  }
 
   onSubmit() {
     console.log('submited');
@@ -36,7 +45,7 @@ export class LoginComponent {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl(this.returnurl);
         },
         (err: HttpErrorResponse) => {
           console.log(

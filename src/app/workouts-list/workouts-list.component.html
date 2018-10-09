@@ -3,7 +3,7 @@
 
 <div class="container main-content">
 
-  <h1 *ngIf="isLoggedIn">Welcome {{currentUserName}}, here are your workouts:</h1>
+  <h1 *ngIf="isLoggedIn">Welcome {{currentUserName}}!</h1>
 
   <ng-container *ngIf="loading; then loader; else loaded"></ng-container>
 

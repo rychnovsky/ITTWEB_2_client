@@ -33,12 +33,20 @@ export class PageHeaderComponent implements OnInit {
   logOut() {
     this.authService.logout();
     this.alertService.success('You have logged out', true);
-    this.router.navigate([]);
+    this.router.navigate(['login'], {
+      queryParams: {
+        return: this.router.url,
+      },
+    });
     return false;
   }
 
   logIn() {
-    this.router.navigate(['login']);
+    this.router.navigate(['login'], {
+      queryParams: {
+        return: this.router.url,
+      },
+    });
     return false;
   }
 }
