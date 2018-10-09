@@ -3,6 +3,7 @@ import { WorkoutService } from '../_services/workout.service';
 import { Workout } from '../_models/workout.model';
 import { AuthenticationService } from '../_services/authentication.service';
 import { User } from '../_models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workouts-list',
@@ -14,10 +15,12 @@ export class WorkoutsListComponent implements OnInit {
   isLoggedIn: boolean = false;
   currentUserName: string;
   workouts: Workout[];
+  redirecturl: string = '';
 
   constructor(
     private workoutService: WorkoutService,
     private authService: AuthenticationService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -26,6 +29,7 @@ export class WorkoutsListComponent implements OnInit {
     const currentUser: User = this.authService.getCurrentUser();
     this.currentUserName = currentUser ? currentUser.firstName : '';
     this.loadWorkoutsList();
+    this.redirecturl = this.router.url;
   }
 
   loadWorkoutsList() {

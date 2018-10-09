@@ -20,7 +20,9 @@
 
     <app-add-workout-form *ngIf="isLoggedIn" (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
 
-    <p *ngIf="!isLoggedIn">You must be logged in to add new workout programs - <a [routerLink]="['/login']">login now</a></p>
+    <p *ngIf="!isLoggedIn">You must be logged in to add new workout programs - <a [routerLink]="['/login']"
+        [queryParams]="{return: redirecturl}">login
+        now</a></p>
   </ng-template>
 
 </div>
