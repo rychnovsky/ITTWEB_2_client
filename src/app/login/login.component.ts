@@ -16,48 +16,25 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  returnurl: string = '';
+  returnurl: string = '/';
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthenticationService,
-    private alertService: AlertService,
-  ) {}
+  constructor(private authService: AuthenticationService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(
-      params => (this.returnurl = params['return'] || '/'),
-    );
+    if (this.authService.redirectUrl) {
+      this.returnurl = this.authService.redirectUrl;
+    }
   }
 
   onSubmit() {
-    console.log('submited');
     let user: User = new User();
     user.email = this.email;
     user.password = this.password;
 
-    console.log(user);
-
     this.authService
       .login(user)
       .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigateByUrl(this.returnurl);
-        },
-        (err: HttpErrorResponse) => {
-          console.log(
-            `Backend returned code ${err.status}, body was: `,
-            err.error,
-          );
-
-          this.alertService.error(err.error.message);
-
-          return false;
-        },
-      );
+      .subscribe();
     return false;
   }
 }

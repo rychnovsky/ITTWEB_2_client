@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User } from '../_models/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 import config from '../_config/config';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,14 @@ import { Observable } from 'rxjs';
 export class AuthenticationService {
   apiBaseUrl: string = config.API_BASE_URL;
   CURRENT_USER: string = 'auth-token';
+  // store the URL so we can redirect after logging in
+  public redirectUrl: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private alertService: AlertService,
+  ) {}
 
   private saveToken(token: string) {
     window.localStorage[this.CURRENT_USER] = token;
@@ -53,12 +61,7 @@ export class AuthenticationService {
 
   public login(user: User): Observable<User> {
     const url = `${this.apiBaseUrl}/login`;
-    return this.http.post<User>(url, user).pipe(
-      map(data => {
-        this.saveToken(data.token);
-        return data;
-      }),
-    );
+    return this.sendLoginRequest(url, user);
   }
 
   public logout() {
@@ -67,11 +70,31 @@ export class AuthenticationService {
 
   public register(user: User): Observable<User> {
     const url = `${this.apiBaseUrl}/register`;
+    return this.sendLoginRequest(url, user);
+  }
+
+  private sendLoginRequest(url: string, user: User): Observable<User> {
     return this.http.post<User>(url, user).pipe(
-      map(data => {
-        this.saveToken(data.token);
-        return data;
-      }),
+      map(
+        data => {
+          console.log(data);
+          console.log('d');
+          this.saveToken(data.token);
+          this.router.navigateByUrl(this.redirectUrl ? this.redirectUrl : '/');
+          this.redirectUrl = '';
+          return data;
+        },
+        (err: HttpErrorResponse) => {
+          console.log(
+            `Backend returned code ${err.status}, body was: `,
+            err.error,
+          );
+
+          this.alertService.error(err.error.message);
+
+          return false;
+        },
+      ),
     );
   }
 }
