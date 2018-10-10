@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
 
   returnurl: string = '/';
+  backurl: string = '/';
 
   constructor(
     private authService: AuthenticationService,
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (this.authService.redirectUrl) {
       this.returnurl = this.authService.redirectUrl;
+      this.backurl = this.returnurl === '/workout-log' ? '/' : this.returnurl;
     }
   }
 
