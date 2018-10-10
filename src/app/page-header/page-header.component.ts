@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/user.model';
 import { AlertService } from '../_services/alert.service';
 
@@ -22,6 +22,7 @@ export class PageHeaderComponent implements OnInit {
     private authService: AuthenticationService,
     private alertService: AlertService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -33,9 +34,17 @@ export class PageHeaderComponent implements OnInit {
   logOut() {
     this.authService.logout();
     this.alertService.success('You have logged out', true);
+    let returnUrl: string = this.router.url;
+    // if I am on secure url, return back to the homepage
+    if (
+      this.route.routeConfig.canActivate &&
+      this.route.routeConfig.canActivate.length > 0
+    ) {
+      returnUrl = '/';
+    }
     this.router.navigate(['login'], {
       queryParams: {
-        return: this.router.url,
+        return: returnUrl,
       },
     });
     return false;

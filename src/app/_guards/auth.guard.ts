@@ -4,6 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
+  ActivatedRoute,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../_services/authentication.service';
@@ -25,10 +26,12 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isLoggedIn()) {
       return true;
     }
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
     // Navigate to the login page
-    this.router.navigate(['/login']);
+    this.router.navigate(['login'], {
+      queryParams: {
+        return: this.router.url,
+      },
+    });
     return false;
   }
 }

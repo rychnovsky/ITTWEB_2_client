@@ -1,0 +1,35 @@
+<app-page-header title="Workout App" subtitle="List of workouts">
+</app-page-header>
+
+<div class="container main-content">
+
+  <h1>{{currentUserName}}, track your workout!</h1>
+
+  <ng-container *ngIf="loading; then loader; else loaded"></ng-container>
+
+  <ng-template #loader>
+    <app-loader *ngIf="loading"></app-loader>
+  </ng-template>
+
+  <ng-template #loaded>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Workout</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let workout of workouts">
+        <td>date</td>
+        <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
+      </tr>
+      <tr *ngIf="workouts && !workouts.length">
+        <td colspan="4">no logged workouts found</td>
+      </tr>
+    </table>
+
+    <app-add-workout-form (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
+
+  </ng-template>
+
+</div>

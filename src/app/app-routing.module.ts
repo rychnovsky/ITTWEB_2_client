@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { WorkoutDetailComponent } from './workout-detail/workout-detail.component';
+import { WorkoutLogComponent } from './wokout-log/workout-log.component';
 
 const appRoutes: Routes = [
   {
@@ -29,6 +30,12 @@ const appRoutes: Routes = [
     path: 'workout/:id',
     component: WorkoutDetailComponent,
     data: { title: 'Workout detail' },
+  },
+  {
+    path: 'workout-log',
+    component: WorkoutLogComponent,
+    data: { title: 'Workout log' },
+    canActivate: [AuthGuard],
   },
   {
     path: '',

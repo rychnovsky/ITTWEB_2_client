@@ -22,11 +22,14 @@ import { LoaderComponent } from './loader/loader.component';
 import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './_services/alert.service';
 import { ExcerciseService } from './_services/excercise.service';
+import { WorkoutLogComponent } from './wokout-log/workout-log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageHeaderComponent,
+    LoaderComponent,
+    AlertComponent,
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
@@ -34,8 +37,7 @@ import { ExcerciseService } from './_services/excercise.service';
     AddWorkoutFormComponent,
     WorkoutDetailComponent,
     AddExcerciseFormComponent,
-    LoaderComponent,
-    AlertComponent,
+    WorkoutLogComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
