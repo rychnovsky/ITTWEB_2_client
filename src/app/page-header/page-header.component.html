@@ -1,13 +1,18 @@
 <header class="header">
   <div class="container">
-    <h1>{{ title }}</h1>
+    <h1>{{ title }} - {{subtitle}}</h1>
   </div>
 </header>
 
 <div class="subheader">
   <div class="container">
-    <span>{{ subtitle }}</span>
-    <button *ngIf="isLoggedIn" (click)="logOut()" class="button button-primary">{{currentUserName}} | Logout</button>
-    <button *ngIf="!isLoggedIn" (click)="logIn()" class="button button-primary">Login</button>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/workouts']">Workout list</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/workout-log']">Workout log</a></li>
+    </ul>
+    <div>
+      <button *ngIf="isLoggedIn" (click)="logOut()" class="button button-primary">{{currentUserName}} | Logout</button>
+      <button *ngIf="!isLoggedIn" (click)="logIn()" class="button button-primary">Login</button>
+    </div>
   </div>
 </div>
