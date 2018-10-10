@@ -17,3 +17,27 @@
     padding: 15px;
   }
 }
+
+ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    display: inline-block;
+    a {
+      text-decoration: none;
+      padding: 5px 20px;
+      transition: all 200ms;
+      &.link-active,
+      &:hover {
+        border-radius: 20px;
+        background: rgba(#fff, 0.5);
+      }
+    }
+  }
+  .nav-item + .nav-item {
+    margin-left: 20px;
+  }
+}
