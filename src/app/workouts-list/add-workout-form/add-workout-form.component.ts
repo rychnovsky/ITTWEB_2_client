@@ -1,8 +1,15 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Output,
+  OnInit,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { WorkoutService } from '../../_services/workout.service';
 import { Workout } from '../../_models/workout.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../../_services/alert.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-workout-form',
@@ -12,8 +19,10 @@ import { AlertService } from '../../_services/alert.service';
 export class AddWorkoutFormComponent implements OnInit {
   @Output()
   onWorkoutCreated: EventEmitter<any> = new EventEmitter();
+  @ViewChild('f')
+  form: any;
 
-  newWorkoutName: string;
+  workout: Workout = new Workout();
 
   constructor(
     private workoutService: WorkoutService,
@@ -23,12 +32,12 @@ export class AddWorkoutFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    let workout: Workout = new Workout();
-    workout.name = this.newWorkoutName;
-
-    this.workoutService.create(workout).subscribe(
+    if (this.form.invalid) {
+      this.alertService.error('Fill the form correctly!');
+      return;
+    }
+    this.workoutService.create(this.workout).subscribe(
       data => {
-        this.newWorkoutName = '';
         this.onWorkoutCreated.emit(data);
         this.alertService.success('New workout created');
         console.log(data);
@@ -43,6 +52,8 @@ export class AddWorkoutFormComponent implements OnInit {
         return false;
       },
     );
+    this.form.resetForm();
+
     return false;
   }
 }

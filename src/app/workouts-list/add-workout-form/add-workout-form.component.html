@@ -1,11 +1,24 @@
 <div class="wrapper">
   <h2>Add New Workout</h2>
-  <form (ngSubmit)="onSubmit()" #addWorkoutForm="ngForm">
-    <label for="workout_name">Workout Name:</label>
-    <input name="workout_name" id="workout_name" value="" type="text" required [(ngModel)]="newWorkoutName">
-    <div>
-      <input value="Submit" type="submit" class="button button-primary">
-      <input reset="Reset" type="reset" class="button">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="row">
+      <div class="form-group col-3">
+        <label for="workout_name">Workout Name:</label>
+        <input name="workout_name" id="workout_name" value="" type="text" required [(ngModel)]="workout.name" #name="ngModel">
+        <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+          <div *ngIf="name.errors.required">
+            Name is required
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="form-group col-3">
+        <input value="Submit" type="submit" class="button button-primary">
+        <input reset="Reset" type="reset" class="button">
+      </div>
+    </div>
+
   </form>
 </div>
