@@ -1,4 +1,11 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { Excercise } from '../../_models/excercise.model';
 import { WorkoutService } from '../../_services/workout.service';
 import { AlertService } from '../../_services/alert.service';
@@ -13,6 +20,8 @@ import { Workout } from 'src/app/_models/workout.model';
 export class AddLogFormComponent implements OnInit {
   @Output()
   onExcerciseCreated: EventEmitter<any> = new EventEmitter();
+  @ViewChild('f')
+  form: any;
 
   date: Date;
   workoutId: number;
@@ -34,6 +43,11 @@ export class AddLogFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      this.alertService.error('Fill the form correctly!');
+      return;
+    }
+
     const workout: Workout = this.workouts.find(
       workout => workout._id == this.workoutId,
     );
@@ -44,5 +58,7 @@ export class AddLogFormComponent implements OnInit {
     // todo - save the Log object
 
     this.alertService.success('New log was created');
+
+    this.form.resetForm();
   }
 }
