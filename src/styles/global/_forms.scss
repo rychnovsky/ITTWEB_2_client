@@ -10,7 +10,8 @@ select {
   border-radius: 10px;
   padding: 5px 10px;
   line-height: 30px;
-  min-width: 300px;
+  display: block;
+  width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -20,7 +21,7 @@ input[type='number'] {
 
 .select-wrapper {
   position: relative;
-  display: inline-block;
+  display: block;
   &:after {
     content: '';
     position: absolute;

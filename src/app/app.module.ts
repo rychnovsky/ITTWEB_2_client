@@ -24,6 +24,7 @@ import { AlertService } from './_services/alert.service';
 import { ExcerciseService } from './_services/excercise.service';
 import { WorkoutLogComponent } from './wokout-log/workout-log.component';
 import { AddLogFormComponent } from './wokout-log/add-log-form/add-log-form.component';
+import { WorkoutLogService } from './_services/workout-log.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AddLogFormComponent } from './wokout-log/add-log-form/add-log-form.comp
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
     WorkoutService,
+    WorkoutLogService,
     ExcerciseService,
     AuthenticationService,
     AlertService,

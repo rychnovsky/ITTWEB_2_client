@@ -12,7 +12,7 @@
   </ng-template>
 
   <ng-template #loaded>
-    <app-add-log-form (onWorkoutCreated)="insertWorkout($event)"></app-add-log-form>
+    <app-add-log-form (onWorkoutLogCreated)="insertWorkoutLog($event)"></app-add-log-form>
 
     <table>
       <thead>
@@ -21,11 +21,11 @@
           <th>Workout</th>
         </tr>
       </thead>
-      <tr *ngFor="let workout of workouts">
-        <td>date</td>
-        <td><a [routerLink]="['/workout', workout._id]">{{workout.name}}</a></td>
+      <tr *ngFor="let log of workoutLogs">
+        <td>{{log.date | date:'dd/MM/yyyy'}}</td>
+        <td>{{log.workout.name}}</td>
       </tr>
-      <tr *ngIf="workouts && !workouts.length">
+      <tr *ngIf="workoutLogs && !workoutLogs.length">
         <td colspan="4">no logged workouts found</td>
       </tr>
     </table>
