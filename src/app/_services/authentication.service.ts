@@ -90,7 +90,7 @@ export class AuthenticationService {
             err.error,
           );
 
-          this.alertService.error(err.error.message);
+          this.alertService.error(err.error.message, true);
 
           return false;
         },

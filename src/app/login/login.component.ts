@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/user.model';
 import { AuthenticationService } from '../_services/authentication.service';
@@ -13,10 +13,11 @@ import { AlertService } from '../_services/alert.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  password: string = '';
+  @ViewChild('f')
+  form: any;
 
-  returnurl: string = '/';
+  user: User = new User();
+
   backurl: string = '/';
 
   constructor(
@@ -26,29 +27,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.redirectUrl) {
-      this.returnurl = this.authService.redirectUrl;
-      this.backurl = this.returnurl === '/workout-log' ? '/' : this.returnurl;
+      // set back link to app
+      const returnurl: string = this.authService.redirectUrl;
+      this.backurl = returnurl === '/workout-log' ? '/' : returnurl;
     }
   }
 
   onSubmit() {
-    if (!this.validate()) {
-      this.alertService.error('Username or password is missing');
+    debugger;
+
+    console.log(this.user);
+
+    if (this.form.invalid) {
+      this.alertService.error('Fill all the fields in this form!');
       return;
     }
 
-    let user: User = new User();
-    user.email = this.email;
-    user.password = this.password;
-
     this.authService
-      .login(user)
+      .login(this.user)
       .pipe(first())
       .subscribe();
     return false;
-  }
-
-  private validate(): boolean {
-    return this.email !== '' && this.password !== '';
   }
 }

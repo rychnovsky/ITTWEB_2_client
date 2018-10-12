@@ -5,14 +5,14 @@
       <h1>Workout App</h1>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form_login">
+    <form (ngSubmit)="onSubmit()" #f="ngForm" class="form_login">
       <div>
         <label for="username">Email</label>
-        <input type="email" name="email" placeholder="Your email" id="email" [(ngModel)]="email" />
+        <input type="email" name="email" placeholder="Your email" id="email" required [(ngModel)]="user.email" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Your password" id="password" [(ngModel)]="password" />
+        <input type="password" name="password" placeholder="Your password" id="password" required [(ngModel)]="user.password" />
       </div>
       <div>
         <input type="submit" value="Log In" class="button button-primary" />
