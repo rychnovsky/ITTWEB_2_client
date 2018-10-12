@@ -28,6 +28,10 @@ export class RegisterComponent {
     console.log(this.user);
 
     if (this.form.invalid) {
+      if (this.form.controls.email.errors.email) {
+        this.alertService.error('Email has bad format!');
+        return;
+      }
       this.alertService.error('Fill all the fields in this form!');
       return;
     }

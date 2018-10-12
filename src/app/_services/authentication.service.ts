@@ -75,26 +75,14 @@ export class AuthenticationService {
 
   private sendLoginRequest(url: string, user: User): Observable<User> {
     return this.http.post<User>(url, user).pipe(
-      map(
-        data => {
-          console.log(data);
-          console.log('d');
-          this.saveToken(data.token);
-          this.router.navigateByUrl(this.redirectUrl ? this.redirectUrl : '/');
-          this.redirectUrl = '';
-          return data;
-        },
-        (err: HttpErrorResponse) => {
-          console.log(
-            `Backend returned code ${err.status}, body was: `,
-            err.error,
-          );
-
-          this.alertService.error(err.error.message, true);
-
-          return false;
-        },
-      ),
+      map(data => {
+        console.log(data);
+        console.log('d');
+        this.saveToken(data.token);
+        this.router.navigateByUrl(this.redirectUrl ? this.redirectUrl : '/');
+        this.redirectUrl = '';
+        return data;
+      }),
     );
   }
 }

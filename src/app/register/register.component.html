@@ -9,15 +9,15 @@
     <form (ngSubmit)="onSubmit()" #f="ngForm" class="form_login">
       <div>
         <label for="username">First name</label>
-        <input type="text" name="firstname" placeholder="First name" id="firstname" required [(ngModel)]="user.firstname" />
+        <input type="text" name="firstname" placeholder="First name" id="firstname" required [(ngModel)]="user.firstName" />
       </div>
       <div>
         <label for="username">Surname</label>
-        <input type="text" name="surname" placeholder="Surname" id="surname" required [(ngModel)]="user.surname" />
+        <input type="text" name="surname" placeholder="Surname" id="surname" required [(ngModel)]="user.surName" />
       </div>
       <div>
         <label for="username">Email</label>
-        <input type="email" name="email" placeholder="Your email" id="email" required [(ngModel)]="user.email" />
+        <input type="email" name="email" placeholder="Your email" id="email" required [(ngModel)]="user.email" email />
       </div>
       <div>
         <label for="password">Password</label>

@@ -34,11 +34,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
-
     console.log(this.user);
 
     if (this.form.invalid) {
+      if (this.form.controls.email.errors.email) {
+        this.alertService.error('Email has bad format!');
+        return;
+      }
       this.alertService.error('Fill all the fields in this form!');
       return;
     }
@@ -46,7 +48,19 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(this.user)
       .pipe(first())
-      .subscribe();
+      .subscribe(
+        (user: User) => {},
+        (err: HttpErrorResponse) => {
+          console.log(
+            `Backend returned code ${err.status}, body was: `,
+            err.error,
+          );
+
+          this.alertService.error(err.error.message, true);
+
+          return false;
+        },
+      );
     return false;
   }
 }
