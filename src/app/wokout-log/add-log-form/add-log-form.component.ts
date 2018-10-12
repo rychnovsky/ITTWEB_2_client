@@ -30,20 +30,19 @@ export class AddLogFormComponent implements OnInit {
   }
 
   resetForm() {
-    // this.name = this.description = this.set = this.duration = undefined;
-    // todo
+    this.date = this.workoutId = undefined;
   }
 
   onSubmit() {
-    console.log(this.date);
-
     const workout: Workout = this.workouts.find(
       workout => workout._id == this.workoutId,
     );
 
     console.log(workout.name);
+    console.log(this.date);
+
+    // todo - save the Log object
 
     this.alertService.success('New log was created');
-    // todo
   }
 }
