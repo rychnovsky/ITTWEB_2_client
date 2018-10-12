@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <h2>Log new workout</h2>
+  <form (ngSubmit)="onSubmit()" #addLogForm="ngForm">
+
+    <div class="row">
+      <div class="col-3">
+        <label for="date">Date:</label>
+        <input class="form_group" name="date" id="date" value="" type="date" required [(ngModel)]="date">
+      </div>
+
+      <div class="col-3">
+        <label for="workout">Workout: </label>
+        <div class="select-wrapper">
+          <select class="form-control" name="workout" id="workout" required [(ngModel)]="workoutId">
+            <option *ngFor="let wor of workouts" [value]="wor._id">{{wor.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <input value="Submit" type="submit" class="button button-primary">
+        <input reset="Reset" type="reset" class="button">
+      </div>
+    </div>
+
+  </form>
+</div>

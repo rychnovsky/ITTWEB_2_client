@@ -74,3 +74,24 @@ table {
     border: 1px solid $theme-color;
   }
 }
+
+// bootstrap-like form
+.row {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+// bootstrap-like layout
+.col-2 {
+  @extend .col;
+  max-width: 50%;
+}
+.col-3 {
+  @extend .col;
+  max-width: 33.3%;
+}
+.col-4 {
+  @extend .col;
+  max-width: 25%;
+}

@@ -12,6 +12,8 @@
   </ng-template>
 
   <ng-template #loaded>
+    <app-add-log-form (onWorkoutCreated)="insertWorkout($event)"></app-add-log-form>
+
     <table>
       <thead>
         <tr>
@@ -28,7 +30,6 @@
       </tr>
     </table>
 
-    <app-add-workout-form (onWorkoutCreated)="insertWorkout($event)"></app-add-workout-form>
 
   </ng-template>
 

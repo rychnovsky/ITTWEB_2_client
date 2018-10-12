@@ -59,7 +59,5 @@ export class AddExcerciseFormComponent implements OnInit {
         return false;
       },
     );
-
-    // TODO : persist new excercise into db
   }
 }
