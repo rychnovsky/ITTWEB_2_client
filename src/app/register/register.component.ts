@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { User } from '../_models/user.model';
@@ -13,10 +13,10 @@ import { AlertService } from '../_services/alert.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  firstname: string;
-  surname: string;
-  password: string;
-  email: string;
+  @ViewChild('f')
+  form: any;
+
+  user: User = new User();
 
   constructor(
     private router: Router,
@@ -25,17 +25,15 @@ export class RegisterComponent {
   ) {}
 
   onSubmit() {
-    console.log('submited');
-    let user: User = new User();
-    user.firstName = this.firstname;
-    user.surName = this.surname;
-    user.password = this.password;
-    user.email = this.email;
+    console.log(this.user);
 
-    console.log(user);
+    if (this.form.invalid) {
+      this.alertService.error('Fill all the fields in this form!');
+      return;
+    }
 
     this.authService
-      .register(user)
+      .register(this.user)
       .pipe(first())
       .subscribe(
         data => {

@@ -12,8 +12,8 @@
           log</a></li>
     </ul>
     <div>
-      <button *ngIf="isLoggedIn" (click)="logOut()" class="button button-primary">{{currentUserName}} | Logout</button>
-      <button *ngIf="!isLoggedIn" (click)="logIn()" class="button button-primary">Login</button>
+      <button *ngIf="isLoggedIn" (click)="logOut()" class="button button-alt">{{currentUserName}} | Logout</button>
+      <button *ngIf="!isLoggedIn" (click)="logIn()" class="button button-alt">Login</button>
     </div>
   </div>
 </div>

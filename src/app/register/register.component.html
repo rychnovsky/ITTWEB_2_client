@@ -6,22 +6,22 @@
     </div>
     <h2>Register new account</h2>
 
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="form_login">
+    <form (ngSubmit)="onSubmit()" #f="ngForm" class="form_login">
       <div>
         <label for="username">First name</label>
-        <input type="text" name="firstname" placeholder="First name" id="firstname" [(ngModel)]="firstname" />
+        <input type="text" name="firstname" placeholder="First name" id="firstname" required [(ngModel)]="user.firstname" />
       </div>
       <div>
         <label for="username">Surname</label>
-        <input type="text" name="surname" placeholder="Surname" id="surname" [(ngModel)]="surname" />
+        <input type="text" name="surname" placeholder="Surname" id="surname" required [(ngModel)]="user.surname" />
       </div>
       <div>
         <label for="username">Email</label>
-        <input type="email" name="email" placeholder="Your email" id="email" [(ngModel)]="email" />
+        <input type="email" name="email" placeholder="Your email" id="email" required [(ngModel)]="user.email" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Your password" id="password" [(ngModel)]="password" />
+        <input type="password" name="password" placeholder="Your password" id="password" required [(ngModel)]="user.password" />
       </div>
       <div>
         <button type="submit" class="button button-primary">Register</button>

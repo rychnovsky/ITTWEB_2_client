@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~src/styles/global/_colors';
 @import '~src/styles/global/_forms';
+@import '~src/styles/global/_buttons';
+@import '~src/styles/global/_tables';
 
 /* Reset styles */
 * {
@@ -28,62 +30,13 @@ a {
   padding: 1px 5px;
 }
 
-/* Buttons */
-.button {
-  padding: 15px;
-  border-radius: 4px;
-  border: 0;
-  font-size: 1rem;
-  text-decoration: none;
-  display: inline-block;
-  line-height: 1rem;
-  transition: all 300ms;
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-  &.button-primary {
-    background: $theme-color;
-    color: #fff;
-  }
-  &.button-secondary {
-    background: $gray;
-    color: #fff;
-  }
-  & + & {
-    margin-left: 10px;
-  }
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  thead tr {
-    background: $theme-color;
-    color: #fff;
-  }
-  th,
-  td {
-    border: 1px solid $gray;
-    padding: 10px;
-    text-align: center;
-  }
-  th {
-    border: 1px solid $theme-color;
-  }
-}
-
-// bootstrap-like form
+// bootstrap-like layout
 .row {
   display: flex;
 }
 .col {
   flex: 1;
 }
-// bootstrap-like layout
 .col-2 {
   @extend .col;
   max-width: 50%;

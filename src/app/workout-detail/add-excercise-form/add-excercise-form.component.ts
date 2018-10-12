@@ -33,10 +33,6 @@ export class AddExcerciseFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  resetForm() {
-    this.form.resetForm();
-  }
-
   onSubmit() {
     if (!this.workoutId) {
       this.alertService.error('Error when submiting the form!');
@@ -52,7 +48,7 @@ export class AddExcerciseFormComponent implements OnInit {
       .addNewExcerise(this.workoutId, this.excercise)
       .subscribe(
         data => {
-          this.resetForm();
+          this.form.resetForm();
           this.onExcerciseCreated.emit(data);
           this.alertService.success('New excercise created');
           console.log(data);

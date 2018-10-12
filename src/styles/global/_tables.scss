@@ -1,0 +1,19 @@
+@import '~src/styles/global/_colors';
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  thead tr {
+    background: $theme-color;
+    color: #fff;
+  }
+  th,
+  td {
+    border: 1px solid $gray;
+    padding: 10px;
+    text-align: center;
+  }
+  th {
+    border: 1px solid $theme-color;
+  }
+}
