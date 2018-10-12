@@ -1,7 +1,7 @@
 @import '~src/styles/global/_colors';
 
 .form-group {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 input:not([type='submit']):not([type='reset']),
@@ -13,6 +13,9 @@ select {
   min-width: 300px;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+input[type='number'] {
+  min-width: 150px !important;
 }
 
 .select-wrapper {

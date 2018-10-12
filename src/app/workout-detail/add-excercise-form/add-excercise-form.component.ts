@@ -1,4 +1,11 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { Excercise } from '../../_models/excercise.model';
 import { WorkoutService } from '../../_services/workout.service';
 import { AlertService } from '../../_services/alert.service';
@@ -14,11 +21,10 @@ export class AddExcerciseFormComponent implements OnInit {
   workoutId: number;
   @Output()
   onExcerciseCreated: EventEmitter<any> = new EventEmitter();
+  @ViewChild('f')
+  form: any;
 
-  name: string;
-  description: string;
-  set: number;
-  duration: number;
+  excercise: Excercise = new Excercise();
 
   constructor(
     private workoutService: WorkoutService,
@@ -28,36 +34,38 @@ export class AddExcerciseFormComponent implements OnInit {
   ngOnInit() {}
 
   resetForm() {
-    this.name = this.description = this.set = this.duration = undefined;
+    this.form.resetForm();
   }
 
   onSubmit() {
     if (!this.workoutId) {
+      this.alertService.error('Error when submiting the form!');
       return false;
     }
 
-    let excercise: Excercise = new Excercise();
-    excercise.name = this.name;
-    excercise.description = this.description;
-    excercise.set = this.set;
-    excercise.duration = this.duration;
+    if (this.form.invalid) {
+      this.alertService.error('Fill the form correctly!');
+      return;
+    }
 
-    this.workoutService.addNewExcerise(this.workoutId, excercise).subscribe(
-      data => {
-        this.resetForm();
-        this.onExcerciseCreated.emit(data);
-        this.alertService.success('New excercise created');
-        console.log(data);
-      },
-      (err: HttpErrorResponse) => {
-        console.log(
-          `Backend returned code ${err.status}, body was: ${err.error}`,
-        );
+    this.workoutService
+      .addNewExcerise(this.workoutId, this.excercise)
+      .subscribe(
+        data => {
+          this.resetForm();
+          this.onExcerciseCreated.emit(data);
+          this.alertService.success('New excercise created');
+          console.log(data);
+        },
+        (err: HttpErrorResponse) => {
+          console.log(
+            `Backend returned code ${err.status}, body was: ${err.error}`,
+          );
 
-        this.alertService.error(err.error.message);
+          this.alertService.error(err.error.message);
 
-        return false;
-      },
-    );
+          return false;
+        },
+      );
   }
 }
